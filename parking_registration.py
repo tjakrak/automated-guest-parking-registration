@@ -43,12 +43,12 @@ try:
 
             # field_element = driver.find_element(By.NAME, field_name)
             field_element.send_keys(input_value)
-
-    logging.info("Finished filling in all field element info")
     
     # Locate the <select> element by its name attribute and interact with it
     select_element = WebDriverWait(driver, 10).until(EC.presence_of_element_located((
         By.XPATH, "//fieldset[@class='valid duration']//label[@class='duration value']//select[@class='duration']")))
+    
+    logging.info("located select element")
     # Check if the element is indeed a 'select' tag
     if select_element.tag_name != 'select':
         raise UnexpectedTagNameException(f"Expected 'select' tag, got '{select_element.tag_name}' tag.")
