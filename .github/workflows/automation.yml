@@ -53,4 +53,4 @@ jobs:
         uses: actions/upload-artifact@v2
         with:
           name: chromedriver-log
-          path: logs/chromedriver.log
+          path: chromedriver.log
