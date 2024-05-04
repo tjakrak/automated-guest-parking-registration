@@ -24,10 +24,10 @@ inputs['token'] = os.getenv('TOKEN')
 inputs['email'] = os.getenv('EMAIL')
 inputs['tel'] = os.getenv('TEL')
 
-#Navigate to the page and interact as needed
+# Set up WebDriver
+driver = webdriver.Chrome(options=chrome_options)
 try:
-    # Set up WebDriver
-    driver = webdriver.Chrome(options=chrome_options)
+    #Navigate to the page and interact as needed
     driver.get("https://boulevard.parkingattendant.com/1hchtwjdt95fd4zyxvqmdmeve0/permits/temporary/new?policy=k10g06m5yd15n7bbep5x0qncmm")
 
     # Fill in each input field
