@@ -8,8 +8,7 @@ import json
 import os
 import logging
 
-logging.basicConfig(level=logging.INFO, filename='app.log', filemode='w',
-                    format='%(name)s - %(levelname)s - %(message)s')
+logging.basicConfig(level=logging.INFO, format='%(asctime)s - %(levelname)s - %(message)s')
 
 # Set up Chrome options
 chrome_options = Options()
