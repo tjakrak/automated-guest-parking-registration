@@ -49,7 +49,7 @@ try:
             field_element.send_keys(input_value)
     
     # Locate the <select> element by its name attribute and interact with it
-    select_element = WebDriverWait(driver, 10).until(EC.presence_of_element_located((
+    select_element = WebDriverWait(driver, 20).until(EC.presence_of_element_located((
         By.XPATH, "//fieldset[@class='valid duration']//label[@class='duration value']//select[@class='duration']")))
     
     logging.info("FAIL TO GET SELECT ELEMENT")
