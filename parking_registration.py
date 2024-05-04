@@ -34,6 +34,21 @@ try:
     #Navigate to the page and interact as needed
     driver.get("https://boulevard.parkingattendant.com/1hchtwjdt95fd4zyxvqmdmeve0/permits/temporary/new?policy=k10g06m5yd15n7bbep5x0qncmm")
 
+    # Locate the <select> element by its name attribute and interact with it
+    select_element = WebDriverWait(driver, 10).until(EC.presence_of_element_located((
+        By.XPATH, "//fieldset[@class='valid duration']//label[@class='duration value']//select[@class='duration']")))
+    
+    # Check if the element is indeed a 'select' tag
+    if select_element.tag_name != 'select':
+        raise UnexpectedTagNameException(f"Expected 'select' tag, got '{select_element.tag_name}' tag.")
+    
+    # Perform selection
+    select = Select(select_element)
+    select.select_by_visible_text(inputs["duration"])
+
+    logging.info("finish selected the duration")
+
+
     # Fill in each input field
     for field_name, input_value in inputs.items():
         if (field_name != "duration"): 
@@ -43,22 +58,7 @@ try:
 
             # field_element = driver.find_element(By.NAME, field_name)
             field_element.send_keys(input_value)
-    
-    # Locate the <select> element by its name attribute and interact with it
-    select_element = WebDriverWait(driver, 10).until(EC.presence_of_element_located((
-        By.XPATH, "//fieldset[@class='valid duration']//label[@class='duration value']//select[@class='duration']")))
-    
-    logging.info("located select element")
-    # Check if the element is indeed a 'select' tag
-    if select_element.tag_name != 'select':
-        raise UnexpectedTagNameException(f"Expected 'select' tag, got '{select_element.tag_name}' tag.")
-    
-    logging.info("trying to select duration")
-    # Perform selection
-    select = Select(select_element)
-    select.select_by_visible_text(inputs["duration"])
 
-    logging.info("selected duration")
     # Find and click the submit button
     submit_button = WebDriverWait(driver, 10).until(EC.element_to_be_clickable((By.XPATH, "//fieldset[@class='control']//button[@type='submit']")))
     submit_button.click()
