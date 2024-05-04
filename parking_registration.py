@@ -5,6 +5,7 @@ from selenium.webdriver.support import expected_conditions as EC
 from selenium.webdriver.support.ui import Select
 from selenium.webdriver.chrome.options import Options
 from selenium.common.exceptions import NoSuchElementException, UnexpectedTagNameException
+from selenium.webdriver.chrome.service import Service
 import json
 import os
 import logging
@@ -28,8 +29,11 @@ inputs['token'] = os.getenv('TOKEN')
 inputs['email'] = os.getenv('EMAIL')
 inputs['tel'] = os.getenv('TEL')
 
+service = Service('/usr/bin/chromedriver', log_path='chromedriver.log')
+driver = webdriver.Chrome(service=service, options=chrome_options)
+
 # Set up WebDriver
-driver = webdriver.Chrome(options=chrome_options)
+# driver = webdriver.Chrome(options=chrome_options)
 try:
     #Navigate to the page and interact as needed
     driver.get("https://boulevard.parkingattendant.com/1hchtwjdt95fd4zyxvqmdmeve0/permits/temporary/new?policy=k10g06m5yd15n7bbep5x0qncmm")
@@ -61,7 +65,7 @@ try:
     # Find and click the submit button
     submit_button = WebDriverWait(driver, 10).until(EC.element_to_be_clickable((By.XPATH, "//fieldset[@class='control']//button[@type='submit']")))
     submit_button.click()
-    logging.info("clicked submit button")
+
     response_message = WebDriverWait(driver, 10).until(EC.visibility_of_element_located((By.XPATH, "//time[@class='relative']")))
     logging.info("Guest parking valid until: " + response_message.text)
 except Exception as e:
