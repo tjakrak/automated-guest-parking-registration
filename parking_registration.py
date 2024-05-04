@@ -8,6 +8,9 @@ import json
 import os
 import logging
 
+logging.basicConfig(level=logging.INFO, filename='app.log', filemode='w',
+                    format='%(name)s - %(levelname)s - %(message)s')
+
 # Set up Chrome options
 chrome_options = Options()
 chrome_options.add_argument("--headless") # Ensure GUI is off
@@ -36,7 +39,7 @@ try:
         wait = WebDriverWait(driver, 10)
         field_element = wait.until(EC.element_to_be_clickable((By.NAME, field_name)))
 
-        field_element = driver.find_element(By.NAME, field_name)
+        # field_element = driver.find_element(By.NAME, field_name)
         field_element.send_keys(input_value)
 
     # Locate the <select> element by its name attribute and interact with it
@@ -51,6 +54,6 @@ try:
     response_message = WebDriverWait(driver, 10).until(EC.visibility_of_element_located((By.XPATH, "//time[@class='relative']")))
     logging.info("Guest parking valid until: " + response_message.text)
 except Exception as e:
-    logging.info("An error occurred:", str(e))
+    logging.info("An error occurred: %s", str(e))
 finally:
     driver.quit()
