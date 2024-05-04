@@ -4,6 +4,7 @@ from selenium.webdriver.support.ui import WebDriverWait
 from selenium.webdriver.support import expected_conditions as EC
 from selenium.webdriver.support.ui import Select
 from selenium.webdriver.chrome.options import Options
+from selenium.common.exceptions import NoSuchElementException, UnexpectedTagNameException
 import json
 import os
 import logging
@@ -42,7 +43,11 @@ try:
         field_element.send_keys(input_value)
 
     # Locate the <select> element by its name attribute and interact with it
-    select_element = WebDriverWait(driver, 10).until(EC.element_to_be_clickable((By.NAME, "duration")))
+    select_element = WebDriverWait(driver, 10).until(EC.presence_of_element_located((By.NAME, "duration")))
+    # Check if the element is indeed a 'select' tag
+    if select_element.tag_name != 'select':
+        raise UnexpectedTagNameException(f"Expected 'select' tag, got '{select_element.tag_name}' tag.")
+    # Perform selection
     select = Select(select_element)
     select.select_by_visible_text("8 hours")
 
