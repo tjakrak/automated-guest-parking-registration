@@ -47,10 +47,8 @@ jobs:
           Xvfb :99 -ac &
           export DISPLAY=:99
           python parking_registration.py
-      - name: List files
-        run: ls -la
       - name: Upload ChromeDriver log
-        uses: actions/upload-artifact@v2
+        uses: actions/upload-artifact@v3
         with:
           name: chromedriver-log
           path: chromedriver.log
