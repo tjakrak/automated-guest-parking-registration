@@ -36,7 +36,7 @@ jobs:
           chromedriver_url=$(echo "$page_content" | grep -oE 'https://storage.googleapis.com/chrome-for-testing-public/[0-9]+\.[0-9]+\.[0-9]+\.[0-9]+/linux64/chromedriver-linux64.zip' | head -1)
           wget -O chromedriver_linux64.zip $chromedriver_url
           unzip chromedriver_linux64.zip
-          sudo mv chromedriver /usr/bin/chromedriver
+          sudo mv chromedriver-linux64/chromedriver /usr/bin/chromedriver
           sudo chmod +x /usr/bin/chromedriver
       - name: Run the script
         env:
