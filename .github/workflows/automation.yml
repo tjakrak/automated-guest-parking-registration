@@ -44,4 +44,11 @@ jobs:
           EMAIL: ${{ secrets.EMAIL }}
           TEL: ${{ secrets.TEL }}
         run: |
+          Xvfb :99 -ac &
+          export DISPLAY=:99
           python parking_registration.py
+      - name: Upload ChromeDriver log
+        uses: actions/upload-artifact@v2
+        with:
+          name: chromedriver-log
+          path: chromedriver.log
