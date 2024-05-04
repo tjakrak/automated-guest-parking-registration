@@ -29,7 +29,7 @@ inputs['token'] = os.getenv('TOKEN')
 inputs['email'] = os.getenv('EMAIL')
 inputs['tel'] = os.getenv('TEL')
 
-service = Service('/usr/bin/chromedriver', log_path='chromedriver.log')
+service = Service('/usr/bin/chromedriver', log_path='logs/chromedriver.log')
 driver = webdriver.Chrome(service=service, options=chrome_options)
 
 # Set up WebDriver
