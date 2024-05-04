@@ -13,6 +13,7 @@ logging.basicConfig(level=logging.INFO, format='%(asctime)s - %(levelname)s - %(
 
 # Set up Chrome options
 chrome_options = Options()
+chrome_options.add_argument("--verbose")
 chrome_options.add_argument("--headless") # Ensure GUI is off
 chrome_options.add_argument("--no-sandbox") # Bypass OS security model
 chrome_options.add_argument("--disable-dev-shm-usage") # Overcome limited resource problems
@@ -35,15 +36,13 @@ try:
 
     # Fill in each input field
     for field_name, input_value in inputs.items():
-        # Wait up to 10 seconds unitl the element is visible and interactable
-        wait = WebDriverWait(driver, 10)
-        field_element = wait.until(EC.element_to_be_clickable((By.NAME, field_name)))
+        if (field_name != "duration"): 
+            # Wait up to 10 seconds unitl the element is visible and interactable
+            wait = WebDriverWait(driver, 10)
+            field_element = wait.until(EC.element_to_be_clickable((By.NAME, field_name)))
 
-        # field_element = driver.find_element(By.NAME, field_name)
-        field_element.send_keys(input_value)
-
-        if field_name == "email":
-            logging.info("input value: " + input_value)
+            # field_element = driver.find_element(By.NAME, field_name)
+            field_element.send_keys(input_value)
 
     # Locate the <select> element by its name attribute and interact with it
     select_element = WebDriverWait(driver, 10).until(EC.presence_of_element_located((
@@ -53,12 +52,13 @@ try:
         raise UnexpectedTagNameException(f"Expected 'select' tag, got '{select_element.tag_name}' tag.")
     # Perform selection
     select = Select(select_element)
-    select.select_by_visible_text("8 hours")
+    select.select_by_visible_text(inputs["duration"])
 
+    logging.info("selected duration")
     # Find and click the submit button
     submit_button = WebDriverWait(driver, 10).until(EC.element_to_be_clickable((By.XPATH, "//fieldset[@class='control']//button[@type='submit']")))
     submit_button.click()
-
+    logging.info("clicked submit button")
     response_message = WebDriverWait(driver, 10).until(EC.visibility_of_element_located((By.XPATH, "//time[@class='relative']")))
     logging.info("Guest parking valid until: " + response_message.text)
 except Exception as e:
