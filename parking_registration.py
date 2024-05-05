@@ -39,6 +39,14 @@ try:
     #Navigate to the page and interact as needed
     driver.get("https://boulevard.parkingattendant.com/1hchtwjdt95fd4zyxvqmdmeve0/permits/temporary/new?policy=k10g06m5yd15n7bbep5x0qncmm")
 
+    # Wait for an AJAX call to complete if you know the JavaScript function or variable that tracks AJAX status
+    WebDriverWait(driver, 30).until(lambda x: driver.execute_script("return jQuery.active == 0"))
+    logging.info("All jQuery AJAX calls completed.")
+
+    # Wait for an AJAX call to complete if you know the JavaScript function or variable that tracks AJAX status
+    WebDriverWait(driver, 30).until(lambda x: driver.execute_script("return jQuery.active == 0"))
+    logging.info("All jQuery AJAX calls completed.")
+
     logging.info(driver.page_source)
 
     # Fill in each input field
