@@ -40,8 +40,9 @@ try:
     driver.get("https://boulevard.parkingattendant.com/boulevard/services")
 
     # Click a link by its text
+    logging.info(driver.page_source)
     # Use WebDriverWait to wait until the link is visible
-    link = WebDriverWait(driver, 40).until(
+    link = WebDriverWait(driver, 100).until(
         EC.visibility_of_element_located((By.LINK_TEXT, 'register vehicle'))
     )
     logging.info(driver.page_source)
