@@ -39,15 +39,9 @@ try:
     #Navigate to the page and interact as needed
     driver.get("https://boulevard.parkingattendant.com/1hchtwjdt95fd4zyxvqmdmeve0/permits/temporary/new?policy=k10g06m5yd15n7bbep5x0qncmm")
 
-    # Wait for an AJAX call to complete if you know the JavaScript function or variable that tracks AJAX status
-    WebDriverWait(driver, 30).until(lambda x: driver.execute_script("return jQuery.active == 0"))
-    logging.info("All jQuery AJAX calls completed.")
-
-    # Wait for an AJAX call to complete if you know the JavaScript function or variable that tracks AJAX status
-    WebDriverWait(driver, 30).until(lambda x: driver.execute_script("return jQuery.active == 0"))
-    logging.info("All jQuery AJAX calls completed.")
-
     logging.info(driver.page_source)
+    select_element = WebDriverWait(driver, 20).until(EC.presence_of_element_located((
+        By.XPATH, "//fieldset[@class='valid duration']//label[@class='duration value']//select[@class='duration']")))
 
     # Fill in each input field
     for field_name, input_value in inputs.items():
@@ -83,5 +77,6 @@ try:
     logging.info("Guest parking valid until: " + response_message.text)
 except Exception as e:
     logging.info("An error occurred: %s", str(e))
+    logging.info(driver.page_source)
 finally:
     driver.quit()
