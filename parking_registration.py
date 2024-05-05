@@ -38,10 +38,7 @@ try:
     #Navigate to the page and interact as needed
     #driver.get("https://boulevard.parkingattendant.com/1hchtwjdt95fd4zyxvqmdmeve0/permits/temporary/new?policy=k10g06m5yd15n7bbep5x0qncmm")
     driver.get("https://boulevard.parkingattendant.com/boulevard/services")
-
-    errors = driver.execute_script("return window.console.error;")
-    if errors:
-        logging.info("Console errors:", errors)
+    driver.execute_script("document.body.style.zoom='100%'")  # Set zoom level to 100%
 
     # Click a link by its text
     logging.info(driver.page_source)
