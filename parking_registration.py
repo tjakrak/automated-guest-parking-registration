@@ -15,11 +15,9 @@ logging.basicConfig(level=logging.INFO, format='%(asctime)s - %(levelname)s - %(
 # Set up Chrome options
 chrome_options = Options()
 chrome_options.add_argument("--verbose")
-# chrome_options.add_argument("--headless") # Ensure GUI is off
+chrome_options.add_argument("--headless") # Ensure GUI is off
 chrome_options.add_argument("--no-sandbox") # Bypass OS security model
 chrome_options.add_argument("--disable-dev-shm-usage") # Overcome limited resource problems
-chrome_options.add_argument("--window-size=1920,1080")
-chrome_options.add_argument("user-agent=Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/124.0.0.0 Safari/537.36")
 
 inputs = {}
 # List of input data corresponding to each field's name attribute
@@ -40,9 +38,13 @@ try:
     #Navigate to the page and interact as needed
     #driver.get("https://boulevard.parkingattendant.com/1hchtwjdt95fd4zyxvqmdmeve0/permits/temporary/new?policy=k10g06m5yd15n7bbep5x0qncmm")
     driver.get("https://boulevard.parkingattendant.com/boulevard/services")
-    logging.info(driver.page_source)
+
     # Click a link by its text
-    link = driver.find_element(By.LINK_TEXT, 'register vehicle')
+    # Use WebDriverWait to wait until the link is visible
+    link = WebDriverWait(driver, 40).until(
+        EC.visibility_of_element_located((By.LINK_TEXT, 'register vehicle'))
+    )
+    logging.info(driver.page_source)
     link.click()
     # logging.info(driver.page_source)
 
