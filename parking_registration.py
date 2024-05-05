@@ -36,7 +36,13 @@ driver = webdriver.Chrome(service=service, options=chrome_options)
 # driver = webdriver.Chrome(options=chrome_options)
 try:
     #Navigate to the page and interact as needed
-    driver.get("https://boulevard.parkingattendant.com/1hchtwjdt95fd4zyxvqmdmeve0/permits/temporary/new?policy=k10g06m5yd15n7bbep5x0qncmm")
+    #driver.get("https://boulevard.parkingattendant.com/1hchtwjdt95fd4zyxvqmdmeve0/permits/temporary/new?policy=k10g06m5yd15n7bbep5x0qncmm")
+    driver.get("https://boulevard.parkingattendant.com/boulevard/services")
+
+    # Click a link by its text
+    link = driver.find_element(By.LINK_TEXT, 'register vehicle')
+    link.click()
+    # logging.info(driver.page_source)
 
     # Fill in each input field
     for field_name, input_value in inputs.items():
