@@ -27,10 +27,10 @@ inputs = {}
 with open('config.json', 'r') as config_file:
     inputs = json.load(config_file)
 
-# Add sensitive data from environment variables
-inputs['token'] = os.getenv('TOKEN')
-inputs['email'] = os.getenv('EMAIL')
-inputs['tel'] = os.getenv('TEL')
+# Update inputs dictionary with environment variables if empty or missing
+inputs['token'] = inputs.get('token') or os.getenv('TOKEN')
+inputs['email'] = inputs.get('email') or os.getenv('EMAIL')
+inputs['tel'] = inputs.get('tel') or os.getenv('TEL')
 
 # Set up WebDriver
 driver = webdriver.Chrome(options=chrome_options)
