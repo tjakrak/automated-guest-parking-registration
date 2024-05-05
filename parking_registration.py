@@ -14,11 +14,12 @@ logging.basicConfig(level=logging.INFO, format='%(asctime)s - %(levelname)s - %(
 
 # Set up Chrome options
 chrome_options = Options()
-chrome_options.add_argument("--verbose")
-chrome_options.add_argument("--headless") # Ensure GUI is off
-chrome_options.add_argument("--no-sandbox") # Bypass OS security model
-chrome_options.add_argument("--disable-dev-shm-usage") # Overcome limited resource problems
-chrome_options.add_argument("--window-size=1440x900")
+# chrome_options.add_argument("--verbose")
+# chrome_options.add_argument("--headless") # Ensure GUI is off
+# chrome_options.add_argument("--no-sandbox") # Bypass OS security model
+# chrome_options.add_argument("--disable-dev-shm-usage") # Overcome limited resource problems
+chrome_options.add_argument("--window-size=1440,900")
+# chrome_options.add_argument("--ignore-certificate-errors")
 
 inputs = {}
 # List of input data corresponding to each field's name attribute
