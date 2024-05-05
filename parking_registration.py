@@ -17,7 +17,7 @@ chrome_options = Options()
 chrome_options.add_argument("--verbose")
 chrome_options.add_argument("--headless") # Ensure GUI is off
 chrome_options.add_argument("--no-sandbox") # Bypass OS security model
-# chrome_options.add_argument("--disable-dev-shm-usage") # Overcome limited resource problems
+chrome_options.add_argument("--disable-dev-shm-usage") # Overcome limited resource problems
 chrome_options.add_argument("--window-size=1440x900")
 
 inputs = {}
@@ -30,8 +30,7 @@ inputs['token'] = os.getenv('TOKEN')
 inputs['email'] = os.getenv('EMAIL')
 inputs['tel'] = os.getenv('TEL')
 
-service = Service('/usr/bin/chromedriver', log_path='chromedriver.log')
-driver = webdriver.Chrome(service=service, options=chrome_options)
+driver = webdriver.Chrome(options=chrome_options)
 
 # Set up WebDriver
 # driver = webdriver.Chrome(options=chrome_options)
@@ -39,6 +38,10 @@ try:
     #Navigate to the page and interact as needed
     #driver.get("https://boulevard.parkingattendant.com/1hchtwjdt95fd4zyxvqmdmeve0/permits/temporary/new?policy=k10g06m5yd15n7bbep5x0qncmm")
     driver.get("https://boulevard.parkingattendant.com/boulevard/services")
+
+    errors = driver.execute_script("return window.console.error;")
+    if errors:
+        logging.info("Console errors:", errors)
 
     # Click a link by its text
     logging.info(driver.page_source)
