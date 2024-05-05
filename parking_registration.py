@@ -18,7 +18,7 @@ chrome_options.add_argument("--verbose")
 chrome_options.add_argument("--headless") # Ensure GUI is off
 chrome_options.add_argument("--no-sandbox") # Bypass OS security model
 # chrome_options.add_argument("--disable-dev-shm-usage") # Overcome limited resource problems
-chrome_options.add_argument("--window-size=1440 x 900")
+chrome_options.add_argument("--window-size=1440x900")
 
 inputs = {}
 # List of input data corresponding to each field's name attribute
