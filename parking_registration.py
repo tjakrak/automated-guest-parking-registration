@@ -50,7 +50,7 @@ try:
 
     # XPath for select and radio buttons
     select_xpath = "//fieldset[@class='valid duration']//select[@class='duration']"
-    radio_xpath = f"//fieldset[@class='valid duration']//label[span[text()='{inputs["duration"]}']]//input[@type='radio'][@name='duration']"
+    radio_xpath = f"//fieldset[@class='valid duration']//label[span[text()='{inputs['duration']}']]//input[@type='radio'][@name='duration']"
     # Wait for <select> or <input type="radio"> to be located
     element = WebDriverWait(driver, 3600, poll_frequency=2).until(
         EC.presence_of_element_located((By.XPATH, f"{select_xpath} | {radio_xpath}")))
