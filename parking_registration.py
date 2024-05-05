@@ -15,7 +15,7 @@ logging.basicConfig(level=logging.INFO, format='%(asctime)s - %(levelname)s - %(
 # Set up Chrome options
 chrome_options = Options()
 # chrome_options.add_argument("--verbose")
-# chrome_options.add_argument("--headless") # Ensure GUI is off
+chrome_options.add_argument("--headless") # Ensure GUI is off
 # chrome_options.add_argument("--no-sandbox") # Bypass OS security model
 # chrome_options.add_argument("--disable-dev-shm-usage") # Overcome limited resource problems
 chrome_options.add_argument("--window-size=1440,900")
@@ -37,18 +37,9 @@ driver = webdriver.Chrome(options=chrome_options)
 # driver = webdriver.Chrome(options=chrome_options)
 try:
     #Navigate to the page and interact as needed
-    #driver.get("https://boulevard.parkingattendant.com/1hchtwjdt95fd4zyxvqmdmeve0/permits/temporary/new?policy=k10g06m5yd15n7bbep5x0qncmm")
-    driver.get("https://boulevard.parkingattendant.com/boulevard/services")
-    driver.execute_script("document.body.style.zoom='100%'")  # Set zoom level to 100%
+    driver.get("https://boulevard.parkingattendant.com/1hchtwjdt95fd4zyxvqmdmeve0/permits/temporary/new?policy=k10g06m5yd15n7bbep5x0qncmm")
 
-    # Click a link by its text
     logging.info(driver.page_source)
-    # Use WebDriverWait to wait until the link is visible
-    link = WebDriverWait(driver, 10).until(
-        EC.element_to_be_clickable((By.LINK_TEXT, 'register vehicle'))
-    )
-    link.click()
-    # logging.info(driver.page_source)
 
     # Fill in each input field
     for field_name, input_value in inputs.items():
