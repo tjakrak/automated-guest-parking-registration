@@ -43,10 +43,9 @@ try:
     # Click a link by its text
     logging.info(driver.page_source)
     # Use WebDriverWait to wait until the link is visible
-    link = WebDriverWait(driver, 100).until(
-        EC.visibility_of_element_located((By.LINK_TEXT, 'register vehicle'))
+    link = WebDriverWait(driver, 10).until(
+        EC.element_to_be_clickable((By.LINK_TEXT, 'register vehicle'))
     )
-    logging.info(driver.page_source)
     link.click()
     # logging.info(driver.page_source)
 
