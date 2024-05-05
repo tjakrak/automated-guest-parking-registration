@@ -40,23 +40,19 @@ try:
     driver.get("https://boulevard.parkingattendant.com/1hchtwjdt95fd4zyxvqmdmeve0/permits/temporary/new?policy=k10g06m5yd15n7bbep5x0qncmm")
 
     logging.info(driver.page_source)
-    select_element = WebDriverWait(driver, 20).until(EC.presence_of_element_located((
-        By.XPATH, "//fieldset[@class='valid duration']//label[@class='duration value']//select[@class='duration']")))
-
     # Fill in each input field
     for field_name, input_value in inputs.items():
         if (field_name != "duration"): 
             # Wait up to 10 seconds unitl the element is visible and interactable
-            wait = WebDriverWait(driver, 10)
+            wait = WebDriverWait(driver, 20)
             field_element = wait.until(EC.element_to_be_clickable((By.NAME, field_name)))
 
             # field_element = driver.find_element(By.NAME, field_name)
             field_element.send_keys(input_value)
-    
-    
+        
     logging.info(driver.page_source)
     # Locate the <select> element by its name attribute and interact with it
-    select_element = WebDriverWait(driver, 20).until(EC.presence_of_element_located((
+    select_element = WebDriverWait(driver, 600).until(EC.presence_of_element_located((
         By.XPATH, "//fieldset[@class='valid duration']//label[@class='duration value']//select[@class='duration']")))
     
     logging.info("FAIL TO GET SELECT ELEMENT")
