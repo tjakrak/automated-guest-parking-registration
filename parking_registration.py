@@ -18,6 +18,8 @@ chrome_options.add_argument("--verbose")
 chrome_options.add_argument("--headless") # Ensure GUI is off
 chrome_options.add_argument("--no-sandbox") # Bypass OS security model
 chrome_options.add_argument("--disable-dev-shm-usage") # Overcome limited resource problems
+chrome_options.add_argument("user-agent=Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/124.0.0.0 Safari/537.36")
+chrome_options.add_argument("window-size=1200x600")
 
 inputs = {}
 # List of input data corresponding to each field's name attribute
