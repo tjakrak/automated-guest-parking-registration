@@ -3,8 +3,11 @@ Automated Guest Parking Form Submission
 ![downloads](https://img.shields.io/github/downloads/atom/atom/total.svg)
 
 ## Table of Contents
-
-[TOC]
+- [Introduction](#introduction)
+- [Requirements](#requirements)
+- [Installation](#installation)
+- [Usage](#usage)
+    - [Configuring the Scheduler](#configuring-the-scheduler)
 
 [](https://imgur.com/a/Sp45UhY)
 ## Introduction
@@ -24,6 +27,7 @@ This solution aims to save time and reduce the hassle associated with manual ent
 * ChromeDriver
 * A GitHub account for deploying the script with GitHub Actions
 
+## Installation
 1. Clone the repository
 ```
 git clone https://github.com/yourusername/your-repository-name.git
