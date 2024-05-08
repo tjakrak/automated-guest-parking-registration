@@ -28,9 +28,9 @@ with open('config.json', 'r') as config_file:
     inputs = json.load(config_file)
 
 # Update inputs dictionary with environment variables if empty or missing
-inputs['token'] = inputs.get('token') or os.getenv('TOKEN')
-inputs['email'] = inputs.get('email') or os.getenv('EMAIL')
-inputs['tel'] = inputs.get('tel') or os.getenv('TEL')
+inputs['token'] = inputs.get('token') or os.getenv('TOKEN') or os.getenv('token')
+inputs['email'] = inputs.get('email') or os.getenv('EMAIL') or os.getenv('email')
+inputs['tel'] = inputs.get('tel') or os.getenv('TEL') or os.getenv('tel')
 
 # Set up WebDriver
 driver = webdriver.Chrome(options=chrome_options)
