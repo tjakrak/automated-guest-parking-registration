@@ -64,7 +64,7 @@ pip install -r requirements.txt
 *  Local execution
     * To run the script locally, execute:
     `python automation_script.py`
-* Github Actions Deployment
+* Github Actions Deployment<br>
 The **.github/workflows/automation.yml** file contains the configuration for GitHub Actions. This workflow is scheduled to run the script daily at a specified time.
     * Push your changes to GitHub repository
     `git add .`
