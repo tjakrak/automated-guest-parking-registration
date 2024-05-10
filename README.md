@@ -62,7 +62,7 @@ pip install -r requirements.txt
 ```
 * Alternatively, set up **TOKEN**, **EMAIL**, **TEL**  environment variables in GitHub Secrets for deployment using GitHub Actions.
     * **Settings > Secrets and variables > Actions**
->Notes: Make sure **tenant** and **space** are in capital letters, follow the exact words on the [website](https://boulevard.parkingattendant.com/1hchtwjdt95fd4zyxvqmdmeve0/permits/temporary/new?policy=k10g06m5yd15n7bbep5x0qncmm).
+>Notes: Make sure **<home_address>** and **<parking_area>** are in capital letters, follow the exact words on the [website](https://boulevard.parkingattendant.com/1hchtwjdt95fd4zyxvqmdmeve0/permits/temporary/new?policy=k10g06m5yd15n7bbep5x0qncmm).
 
 ## Usage
 *  Local execution
